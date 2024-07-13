@@ -15,13 +15,22 @@
     {
       "name": "pronounce",
       "title": "Pronounce",
-      "subtitle": "Pronounces text",
+      "subtitle": "Pronounces currently selected text",
       "description": "Pronounces the text at the language you choose",
-      "mode": "view"
+      "mode": "no-view",
+      "arguments": [
+        {
+          "placeholder": "text",
+          "required": false,
+          "name": "text",
+          "type": "text"
+        }
+      ]
     }
   ],
   "dependencies": {
     "@raycast/api": "^1.78.1",
+    "@raycast/utils": "^1.16.2",
     "google-tts-api": "^2.0.2"
   },
   "devDependencies": {
