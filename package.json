@@ -21,7 +21,8 @@
     }
   ],
   "dependencies": {
-    "@raycast/api": "^1.78.1"
+    "@raycast/api": "^1.78.1",
+    "google-tts-api": "^2.0.2"
   },
   "devDependencies": {
     "@raycast/eslint-config": "^1.0.8",
