@@ -3,6 +3,7 @@ import { showFailureToast } from "@raycast/utils";
 import { execSync } from "child_process";
 import { getLastCommand, setLastCommand } from "./last-command";
 import { playTTS } from "./play-tts";
+import { preferences } from "./preferences";
 
 export default async function Command(props: LaunchProps<{ arguments: { text: string } }>) {
   let text = props.arguments.text.trim();
@@ -20,7 +21,7 @@ export default async function Command(props: LaunchProps<{ arguments: { text: st
   }
 
   const lastCommand = getLastCommand();
-  const shouldPronounceSlow = lastCommand?.text === text;
+  const shouldPronounceSlow = preferences.isAlwaysSlow || lastCommand?.text === text;
 
   try {
     if (lastCommand?.processId) {
@@ -32,7 +33,7 @@ export default async function Command(props: LaunchProps<{ arguments: { text: st
       } catch {}
     }
 
-    const process = await playTTS(text, { lang: "en", slow: shouldPronounceSlow });
+    const process = await playTTS(text, { lang: preferences.language, slow: shouldPronounceSlow });
     setLastCommand({
       text,
       processId: process.pid?.toString() ?? "",
