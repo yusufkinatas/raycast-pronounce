@@ -33,25 +33,28 @@ export default async function Command(props: LaunchProps<{ arguments: { text: st
       } catch {}
     }
 
+    const toast = await showToast({
+      title: "Loading...",
+      style: Toast.Style.Animated,
+    });
+
     const process = await playTTS(text, { lang: preferences.language, slow: shouldPronounceSlow });
     setLastCommand({
       text,
       processId: process.pid?.toString() ?? "",
     });
 
-    await showToast({
-      title: "Pronouncing...",
-      style: Toast.Style.Success,
-      primaryAction: {
-        title: "Stop playing",
-        onAction: () => {
-          if (process && !process.killed) {
-            process.kill();
-          }
-        },
-        shortcut: { key: "p", modifiers: ["cmd"] },
+    toast.title = "Pronouncing...";
+    toast.style = Toast.Style.Success;
+    toast.primaryAction = {
+      title: "Stop playing",
+      onAction: () => {
+        if (process && !process.killed) {
+          process.kill();
+        }
       },
-    });
+      shortcut: { key: "p", modifiers: ["cmd"] },
+    };
   } catch (error) {
     if (error instanceof RangeError) {
       return showToast({
