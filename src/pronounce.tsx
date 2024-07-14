@@ -28,7 +28,7 @@ export default async function Command(props: LaunchProps<{ arguments: { text: st
       try {
         // TODO: CAN THIS ACCIDENTALLY KILL ANOTHER RANDOM PROCESS IF THE PID IS REUSED?
         execSync(`kill ${lastCommand.processId}`);
-        // we don't need to do anything if the process is already killed
+        // no need to show an error if process is already killed
         // eslint-disable-next-line no-empty
       } catch {}
     }
