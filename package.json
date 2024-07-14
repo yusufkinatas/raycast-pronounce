@@ -15,7 +15,7 @@
     {
       "name": "pronounce",
       "title": "Pronounce",
-      "subtitle": "Pronounces selected text",
+      "subtitle": "Pronounce selected text",
       "description": "Pronounces selected or inputted text in the preferred language",
       "mode": "no-view",
       "arguments": [
